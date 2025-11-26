@@ -14,8 +14,9 @@ theme:
 
 plugins:
   - blog
+      post_dir: blog/posts
 
 # 左側のナビゲーションメニューを自動生成しない場合の設定（任意）
-# nav:
-#   - Home: index.md
-#   - About: about.md
+nav:
+ - Home: index.md
+ - Blog: blog/index.md
