@@ -1,5 +1,5 @@
 # 5年わからなかったGitが、GitHubを捨てたら一瞬で理解できた話
-![](/images/git_github_zukai_note.png)
+![](images/git_github_zukai_note.png)
 
 「GitHubを使えるようにならないといけない」  
 「GitHubは絶対使ったほうがいい」
@@ -215,7 +215,7 @@ git merge 平行世界
 
 一応図解を置いておく。
 
-![](/images/ブランチの図解.png)
+![](images/ブランチの図解.png)
 
 
 ## 残りの4割はGitHubなどのサービスへの理解
