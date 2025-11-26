@@ -9,6 +9,11 @@ theme:
     scheme: default      # ライトモード
     primary: indigo      # メインカラー
     accent: indigo
+  features:
+    - search.suggest
+
+plugins:
+  - blog
 
 # 左側のナビゲーションメニューを自動生成しない場合の設定（任意）
 # nav:
