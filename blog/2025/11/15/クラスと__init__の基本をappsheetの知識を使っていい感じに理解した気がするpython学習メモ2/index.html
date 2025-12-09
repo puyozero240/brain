@@ -1,0 +1,811 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../12/python%E3%81%A7%E3%81%A4%E3%81%8F%E3%82%8Bweb%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E4%BD%9C%E3%82%8A%E6%96%B9%E3%81%AE%E5%AD%A6%E7%BF%92%E3%83%A1%E3%83%A21/">
+      
+      
+        <link rel="next" href="../../18/apple%E4%BF%A1%E8%80%85%E3%81%8Candroid%E8%B2%A9%E5%A3%B2%E5%93%A1%E3%81%AB%E3%81%AA%E3%81%A3%E3%81%A6%E6%84%9F%E3%81%98%E3%81%9Fandroid%E3%81%AE%E3%81%84%E3%81%84%E3%81%A8%E3%81%93%E3%82%8D/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>クラスと__init__の基本をAppSheetの知識を使っていい感じに理解した気がする。【Python学習メモ(2)】 - My Brain Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#__init__appsheetpython2" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href="../../../../.." title="My Brain Notes" class="md-header__button md-logo" aria-label="My Brain Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            My Brain Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              クラスと__init__の基本をAppSheetの知識を使っていい感じに理解した気がする。【Python学習メモ(2)】
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="My Brain Notes" class="md-nav__button md-logo" aria-label="My Brain Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    My Brain Notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome to MkDocs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Blog
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      <a href="../../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    過去の投稿
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    過去の投稿
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2025
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        学習のアウトプット
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="学習のアウトプット">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pythonのクラスはレコードの設計図
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#init" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        init はクラスを呼び出すときに自動的に実行される
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#init-appsheetrequired" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        init は AppSheetのフォーム入力時のRequiredと同じ効果を持っている
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initial-value-xxx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        初期値（initial value）を設定したい場合は 属性=”xxx” で設定できる
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        初期値をもたせる属性は引数の最後にまとめないとエラーが出る
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#__init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        総括: クラスはデータ入力フォーム、__init__をデフォルトにするのが吉。
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../../" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                  <span class="md-ellipsis">
+                    ブログトップへ戻る
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    メタデータ
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                        <time datetime="2025-11-15 00:00:00+00:00" class="md-ellipsis">2025年11月15日</time>
+                      </div>
+                    </li>
+                    
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              このページは約2分で読めます
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+            
+          </nav>
+          
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+  
+
+
+
+
+<h1 id="__init__appsheetpython2">クラスと__init__の基本をAppSheetの知識を使っていい感じに理解した気がする。【Python学習メモ(2)】</h1>
+<!-- more -->
+
+<p>私はAppSheetというGoogleが出しているノーコードツールで業務アプリを作っている。</p>
+<p>ノーコードツールを作るにあたり、業務内で扱われるデータの流れというものを定義する必要があり、一般的にデータモデリングと言われている。</p>
+<p>ノーコードツールでもデータモデリングをしっかりすることで将来的に使えるデータをためていこうという「読み書きパソコン」というYouTubeチャンネルの方向性で私は学習を進めている。</p>
+<p><a href="https://www.youtube.com/@yomikakiPC">読み書きパソコン</a></p>
+<p>さらにその知見を使ってノーコードではなくしっかりコードを書いてアプリを作ろうと現在Pythonを学習中だ。</p>
+<p>これらの記事はその学習の中でのログを学習ノートとして残しておこうという趣旨で書かれている。</p>
+<p><a href="https://note.com/puyozero/m/m961b392421a8">【学習メモ】PythonでつくるWebアプリの作り方｜ぷよぜろ｜note</a></p>
+<p>現在使っている学習教材は下記の書籍と動画である。</p>
+<p>https://x.gd/qRHpC</p>
+<p>https://m.youtube.com/watch?v=XMDWpPZkRCc&amp;pp=0gcJCR4Bo7VqN5tD</p>
+<p>ガチンコエンジニアの皆様は「この人は個々で躓いてるんだなぁ」と眺めてもらえると嬉しい。
+アドバイスなどいただけるとなお嬉しい。</p>
+<h2 id="_1">学習のアウトプット</h2>
+<p>「読み書きパソコン」で学んだAppSheetの知識を活かすために、変数名やクラス名を一部日本語で書いている。本来半角英数にするというのは理解しているのでそこに対するツッコミは容赦願いたい。</p>
+<h3 id="python">Pythonのクラスはレコードの設計図</h3>
+<p>Pythonのクラスの理解が進んだのでメモしておく。AppSheetとデータベースのほうの理解が進んでいるので、そちらと置き換えて整理していく。</p>
+<p>まずはAppSheetとつなげるために、言葉の定義をこう変換する。</p>
+<ul>
+<li>オブジェクト(インスタンス) = レコード</li>
+<li>クラス = (スプレッドシートでの)カラム設計</li>
+<li>クラス名 = テーブル名</li>
+</ul>
+<p>と対応させておこう‥</p>
+<p>つまるところ、テーブルにデータを入れるための型を作る。AppSheetに置き換えるとスプレッドシートの1行目にカラムを設定するようなものだと言えそうだ。</p>
+<p>例えば顧客テーブルにこういうレコードを作りたいとする。</p>
+<p>ID顧客  |  姓  |  名  |  性別  …</p>
+<p>Pythonではこうなる（IDについては未学習なので固定で1とする）。</p>
+<pre><code class="language-python"># クラス名をまず決める
+class 顧客:
+    # ここに処理を書いていく
+    # 一つ一つの処理はdefの中にあってメソッドと呼ぶ
+    # 「self」以降の姓とか名とかは「属性」と呼ぶ
+    # まずはレコード（オブジェクト、インスタンス）を作るための処理
+    def __init__(self, ID顧客, 姓, 名, 性別):
+        #自分自身のカラム(self.xxx)にそれぞれの引数を入れていく
+        self.ID顧客 = ID顧客
+        self.姓 = 姓
+        self.名 = 名
+        self.性別 = 性別
+</code></pre>
+<p>実際にデータを入れる場合は</p>
+<pre><code class="language-python">class 顧客:
+    def __init__(self, ID顧客, 姓, 名, 性別):
+        self.ID顧客 = ID顧客
+        self.姓 = 姓
+        self.名 = 名
+        self.性別 = 性別
+
+# クラスを呼び出してデータを渡す
+customer_a = 顧客('1', '田中', '太郎', '男性')
+</code></pre>
+<p>AppSheetのフォームでデータ入力してるようなものだと思えばわかりやすい。</p>
+<p>この結果はスプレットシートで表現するとこうなる</p>
+<p>ID顧客  |  姓     |  名      |  性別  …
+1           |  田中  |  太郎  |  男性 …</p>
+<h3 id="init"><strong>init</strong> はクラスを呼び出すときに自動的に実行される</h3>
+<p>サプーさんの動画でクラスの学習をしているときに引っかかった部分がある。</p>
+<blockquote>
+<p>メソッドは関数みたいに「def 小文字のメソッド名」を書いて()を書きます。
+（中略）イニシャライザー（<strong>init</strong>）は初期化っていう意味なのでまずデータを設定してオブジェクトを初期化するという感じです
+</p>
+</blockquote>
+<p>「ん、なんでわかりやすい名前をつけられるのに__init__ なんていうわかりにくいものを使うんだ？初期化って言ってるけどこれやらないと前の処理のデータが残るとかなのか？？」</p>
+<p>という疑問を持った。</p>
+<p>なのでGemini先生に聞いてみた。以下やりとりを余計なところを端折って貼っておく。</p>
+<p>私『Pythonでクラスを作るとき、クラスの名前を <strong>init</strong> とすると思います。これはインスタンス作る前にクラスの中身まっさらにリセットするよーって理解でいいか？』</p>
+<blockquote>
+<p>「まっさらにリセットする」というよりは、「新しくインスタンスを作るときに、そのインスタンスの初期設定（しょきせってい）をする」というイメージが近いです。（中略）「指定された設定で初期セットアップする」という感じですね！
+</p>
+</blockquote>
+<p>私『<strong>init</strong> じゃなくて 顧客情報入力 ってメソッド名にもできると思うんだけど、<strong>init</strong> を使うのはなんで？』</p>
+<blockquote>
+<p><strong>違いは「自動」か「手動」か</strong></p>
+<ul>
+<li><strong>init</strong><ul>
+<li><strong>自動で呼び出される</strong>（インスタンスを作る時）。</li>
+<li>役割: インスタンスが生まれた瞬間に<strong>必ず持っていてほしい初期設定</strong>（名前、性別、住所など）をセットするため。</li>
+</ul>
+</li>
+<li>任意の名前のメソッド<ul>
+<li><strong>手動で呼び出す</strong>必要がある。</li>
+<li>役割: インスタンスが生まれた<strong>後で</strong>、何か操作をしたり、状態を変えたりするため（例: car.change_last_name("佐藤") など）。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p>なるほど。つまりこういうことだ。<strong>init</strong> にすることで</p>
+<pre><code class="language-python">customer_a = 顧客('1', '田中', '太郎', '男性')
+</code></pre>
+<p>こういう形でクラス名を指定して引数で情報を渡すだけで、自動的に中にある def <strong>init</strong> (…) が実行される。</p>
+<p>しかし <strong>init</strong> ではなく、def 顧客情報(…) とした場合は下記のような形にしないと def 顧客情報(…) が実行されない</p>
+<pre><code class="language-python"># 1. まず、空っぽのオブジェクトを作る
+customer_a = 顧客() 
+
+# 2. 次に、「手動で」メソッドを呼び出す
+customer_a.顧客情報('1', '田中', '太郎', '男性') 
+</code></pre>
+<p>この2段階を踏まないと実行されないのである。これは非常に手間だ。</p>
+<p>そして最後のひとことで、またAppSheetとつながった。</p>
+<blockquote>
+<p><strong>init</strong> は、「このクラスのインスタンスを作るなら、絶対にこの情報を入れてもらわないと困る！」という<strong>ルールを強制する</strong>ためにも使われるんです。
+</p>
+</blockquote>
+<h3 id="init-appsheetrequired"><strong>init</strong> は AppSheetのフォーム入力時のRequiredと同じ効果を持っている</h3>
+<p>先程私はクラスを使ったオブジェクト作成が、 AppSheetで入力フォームでデータを入れていく作業として理解した。</p>
+<p>そして上記の</p>
+<blockquote>
+<p>「絶対にこの情報を入れてもらわないと困る！」という<strong>ルールを強制する</strong>ためにも使われる
+</p>
+</blockquote>
+<p>という部分。ここが「AppSheetのテーブル設定でRequiredにチェックを入れることとまったく同じじゃないか？」と気がつく。</p>
+<pre><code class="language-python">なるほどね。
+自動呼び出しするかどうか、か！
+
+つまり、クラスはDBのレコードを作るためのカラムの組み合わせを予め持っていて、引数でそこにデータを流し込むと。
+業務アプリで入力フォーム立ち上げたときの「入力必須（呼び出し必須）」的な動き、ﾘｸﾜｲﾔｰ 的な動きみたいな感じか！
+</code></pre>
+<blockquote>
+<p>その例え、すごく分かりやすいです！まさにそんな感じです。</p>
+<ul>
+<li><strong>クラス (<code>class 顧客情報</code>)</strong>: 「<code>顧客</code> というテーブル（DB）の設計図」</li>
+<li><strong><code>__init__</code> の引数 (<code>'1','田中','太郎','男性'</code> )</strong>: 「<code>ID顧客,姓,名,性別</code> というカラム（入力必須/Required）」</li>
+<li><strong>インスタンス (customer_a)</strong>: 「設計図と必須データを使って作られた、新しいレコード（行）」</li>
+</ul>
+<p>（前略）ではクラスに対して、うっかり顧客情報を指定せずにインスタンスを作ろうとしたら、どうなると思いますか？
+</p>
+</blockquote>
+<pre><code class="language-python">何もしてないから指示が通る。虫食いでインスタンス（オブジェクト）が作られてしまう？
+</code></pre>
+<p>理解したはずなのになぜか回答を外してしまう私。</p>
+<blockquote>
+<p>「何も指定しなかったら、データが空っぽの『虫食い』状態のインスタンスができてしまうかも？」と思いますよね。</p>
+<p>でも、Pythonはそこをしっかり止めてくれます。</p>
+<p><code>__init__</code> で <code>def __init__(ID顧客, 姓, 名, 性別):</code> と書いた時点で、「<code>ID顧客, 姓, 名, 性別</code> は必須（Required）ですよ！」というルールが設定されます。</p>
+<p>もし <code>customer = 顧客情報()</code> のように引数を渡さないで実行すると、Pythonは「話が違う！」と判断して、インスタンスを作るのを<strong>ストップ</strong>し、<strong>エラー</strong>を出します。
+</p>
+</blockquote>
+<h3 id="initial-value-xxx">初期値（initial value）を設定したい場合は 属性=”xxx” で設定できる</h3>
+<p>この部分の説明は、「顧客情報を入力する」という状況よりも、「タスクを登録する」という状況に置き換えたほうがわかりやすいので、顧客情報の作成からタスクの作成に内容を切り替えて書いていく。</p>
+<p>クラスの定義はこういう形に変更した。</p>
+<pre><code class="language-python">class タスク:
+    def __init__(self, IDタスク, タスク名, ステータス):
+        self.IDタスク = IDタスク
+        self.タスク名 = タスク名
+        self.ステータス = ステータス
+</code></pre>
+<p>スプレッドシートで表現するとこういう設計をしたことになる。</p>
+<p>IDタスク  |  タスク名  |  ステータス</p>
+<p>タスクの登録ではこの「ステータス」をわざわざ設定しなくても登録した時点で「未着手」という形にしておきたい。AppSheetだとinitial valueに “未着手” と書けば簡単に設定できる。</p>
+<p>それをクラスの中で実現しようとするとこうなる。</p>
+<pre><code class="language-python">class タスク:
+    # ステータスに初期値として「未着手」を設定する場合は下記のように書く
+    def __init__(self, IDタスク, タスク名, ステータス='未着手'):
+        self.IDタスク = IDタスク
+        self.タスク名 = タスク名
+        self.ステータス = ステータス
+</code></pre>
+<p>こうしておくことで下記のようにステータスの引数を設定しなくても、ステータスには「未着手」という情報が勝手に入るようになる。</p>
+<pre><code class="language-python">class タスク:
+    # ステータスに初期値として「未着手」を設定する場合は下記のように書く
+    def __init__(self, IDタスク, タスク名, ステータス='未着手'):
+        self.IDタスク = IDタスク
+        self.タスク名 = タスク名
+        self.ステータス = ステータス
+
+# ステータスを指定せずにオブジェクトを作る
+task = タスク('1', '田中さんに連絡する')
+</code></pre>
+<p>通常であれば上記のコードで実行してもエラーが出るのだが、ステータスに初期値として「未着手」を設定しているので、エラーが出ず下記のようなデータが入る。</p>
+<p>IDタスク  |  タスク名                     |  ステータス
+1               |  田中さんに連絡する  |  未着手</p>
+<h3 id="_2"><strong>初期値をもたせる属性は引数の最後にまとめないとエラーが出る</strong></h3>
+<p>最後に注意点。初期値を持つ属性は必ず最後にまとめるようにする。初期値を設定していない属性の前に初期値を設定した属性を書いてしまうとシンタックスエラーになってしまうので注意したい。</p>
+<p>具体例を出すとこれはエラーが出ない</p>
+<pre><code class="language-python">class タスク:
+    *# 初期値をもたせる「ステータス」を引数の最後に書いているので問題ない*
+    def __init__(self, IDタスク, タスク名, ステータス='未着手'):
+        self.IDタスク = IDタスク
+        self.タスク名 = タスク名
+        self.ステータス = ステータス
+</code></pre>
+<p>しかしこっちだとエラーが出る</p>
+<pre><code class="language-python">class タスク:
+    *# 初期値をもたせる「ステータス」を引数の真ん中に持ってきた。*
+    def __init__(self, IDタスク, ステータス='未着手', タスク名):
+        self.IDタスク = IDタスク
+        self.ステータス = ステータス
+        self.タスク名 = タスク名
+</code></pre>
+<h2 id="__init__">総括: クラスはデータ入力フォーム、__init__をデフォルトにするのが吉。</h2>
+<p>箇条書きでまとめよう。</p>
+<ul>
+<li>テーブルにレコードを作るための型</li>
+<li><strong>init</strong> を使う</li>
+<li><strong>init</strong> で指定したカラム（属性）は Required となり入力必須となる</li>
+<li>初期値を設定したいなら 属性=”xxx” と書く</li>
+</ul>
+<p>今回の学習でPythonのクラスについてかなり理解が進んだ。今まででの学習で一番解像度が上がってとてもたのしい。</p>
+<p>ただクラスの学習もPythonの学習も基本的にはミクロな部分の学習が多いので理解が進みにくい。自分が今何のどこを学んでいるのかわかるようになるために、今後はPython、Flaskなどの全体感を掴む学習を進めていきたい。</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+      
+    </article>
+  </div>
+
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../../..", "features": ["search.suggest"], "search": "../../../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+    
+    
+      <script src="../../../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>
