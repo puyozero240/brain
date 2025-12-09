@@ -1,5 +1,10 @@
+---
+date: 2025-11-18
+---
+
 # Apple信者がAndroid販売員になって感じたAndroidのいいところ 
 
+<!-- more -->
 
 iPhone、iPad（Apple Pencil）、Mac、AirPodsPro、Apple Watch、AirTag…
 
@@ -16,6 +21,7 @@ iPhone、iPad（Apple Pencil）、Mac、AirPodsPro、Apple Watch、AirTag…
 そう思って最初は仕方なくAndroidについて調べていたが、調べて、自分で少しずつ使っていくうちに「やるやんAndroid」と思うように。
 
 「Appleしか勝たん！」そう思っていた私だからこそ見えてきたAndroidのいいところを紹介していきたい。
+
 
 ## Androidが複雑に見えるのはレイヤーが1階層深いから
 
